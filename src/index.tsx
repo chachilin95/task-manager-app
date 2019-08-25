@@ -1,5 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './app';
+import { Provider } from 'react-redux';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import TaskManagerApp from './app';
+import configureStore from './store/configureStore';
+
+const store = configureStore();
+const jsx = (
+    <Provider store={store}>
+        <TaskManagerApp/>
+    </Provider>
+);
+
+let hasRendered = false;
+const renderApp = () => {
+    if (!hasRendered) {
+        ReactDOM.render(jsx, document.getElementById('root'));
+        hasRendered = true;
+    }
+};
+
+renderApp();
