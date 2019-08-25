@@ -1,7 +1,11 @@
 import React from 'react';
 
+import AppRouter from './routers/AppRouter';
+
 const App: React.FC = () => (
-    <h1>Task Manager</h1>
+    <div>
+        <AppRouter/>
+    </div>
 );
 
 export default App;
