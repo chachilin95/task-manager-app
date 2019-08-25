@@ -1,5 +1,5 @@
-export interface Task {
-    id: string,
+export type Task = {
+    id?: string,
     description: string,
     completed: boolean
 };
@@ -13,4 +13,7 @@ export type Action =
     } | {
         type: 'DELETE_TASK',
         id: string
+    } | {
+        type: 'SET_TASKS',
+        tasks: State
     };

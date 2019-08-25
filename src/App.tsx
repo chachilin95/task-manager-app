@@ -1,5 +1,7 @@
 import React from 'react';
 
-export default () => (
+const App: React.FC = () => (
     <h1>Task Manager</h1>
 );
+
+export default App;
