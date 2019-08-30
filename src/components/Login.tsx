@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import { startLogin } from '../actions/auth';
+
 const Login: React.FC = () => {
 
     const [email, setEmail] = useState('');
@@ -8,8 +10,7 @@ const Login: React.FC = () => {
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        console.log(email);
-        console.log(password);
+        startLogin({ email, password });
     };
 
     return (

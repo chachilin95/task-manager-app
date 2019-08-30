@@ -3,7 +3,7 @@ import { Router, Route, Switch } from 'react-router-dom';
 import { createBrowserHistory as createHistory } from 'history';
 
 // components
-import Login from '../components/Login/Login';
+import Login from '../components/Login';
 import TaskDashboard from '../components/TaskDashboard';
 import AddTask from '../components/AddTask';
 import EditTask from '../components/EditTask';
