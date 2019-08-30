@@ -1,3 +1,4 @@
+import { AuthenticationError } from '../utils/errors';
 import { Action, User } from '../types/auth.types';
 import UserAPI from '../api/user';
 
@@ -11,9 +12,9 @@ export const login = (uid: string): Action => ({
 export const startLogin = async (user: User) => {
     try {
         const { token } = await UserAPI.login(user);
-        console.log(token);
+        return login(token);
     } catch (error) {
-        console.log('error', error);
+        throw new AuthenticationError(error);
     }
 };
 
@@ -24,8 +25,12 @@ export const logout = (): Action => ({
 });
 
 export const startLogout = async () => {
-    // POST /users/logout
-    // requires authentication
+    try {
+        await UserAPI.logout();
+        return logout();
+    } catch (error) {
+        throw new AuthenticationError(error);
+    }
 };
 
 ///////////// CREATE ACCOUNT /////////////
