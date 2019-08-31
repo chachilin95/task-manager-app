@@ -1,7 +1,9 @@
 import uuid from 'uuid';
 import { State, Action, Task } from '../types/tasks.types';
 
-export default (state: State = [], action: Action): State => {
+const initState: Task[] = [];
+
+export default (state: State = initState, action: Action): State => {
     switch (action.type) {
         case 'ADD_TASK':
             const newTask: Task = {

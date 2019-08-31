@@ -1,9 +1,11 @@
-export type User = {
+export interface User {
     email: string,
     password: string
-};
+}
 
-export type State = User;
+export type State = {
+    uid: string
+};
 
 export type Action = 
     | {
