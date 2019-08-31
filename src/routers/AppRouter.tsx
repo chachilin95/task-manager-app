@@ -9,17 +9,35 @@ import AddTask from '../components/AddTask';
 import EditTask from '../components/EditTask';
 import NotFound from '../components/NotFound';
 
+// route types
+import PublicRoute from './PublicRoute';
+import PrivateRoute from './PrivateRoute';
+
 export const history = createHistory();
 
 const AppRouter: React.FC = () => (
     <Router history={history}>
         <div>
             <Switch>
-                <Route exact path='/' component={Login}/>
-                <Route exact path='/dashboard' component={TaskDashboard}/>
-                <Route exact path='/create' component={AddTask}/>
-                <Route exact path='/edit/:id' component={EditTask}/>
-                <Route exact component={NotFound}/>
+                <PublicRoute
+                    exact 
+                    path='/' 
+                    component={Login}/>
+                <PrivateRoute 
+                    exact 
+                    path='/dashboard' 
+                    component={TaskDashboard}/>
+                <PrivateRoute 
+                    exact 
+                    path='/create' 
+                    component={AddTask}/>
+                <PrivateRoute 
+                    exact 
+                    path='/edit/:id' 
+                    component={EditTask}/>
+                <Route 
+                    exact 
+                    component={NotFound}/>
             </Switch>
         </div>
     </Router>
