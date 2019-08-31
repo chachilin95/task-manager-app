@@ -8,4 +8,4 @@ export type State = {
     tasks: TaskState
 };
 
-export type Dispatch = (action: Actions) => void;
+export type DispatchType = React.Dispatch<Actions>;

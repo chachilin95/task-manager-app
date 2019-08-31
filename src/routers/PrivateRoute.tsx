@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
+import Header from '../components/Header';
 
 // import { State as ReduxState } from '../types/redux.types';
 
@@ -23,7 +24,10 @@ export const PrivateRoute = ({
 }: Props) => {
 
     const renderComponent = (props: any) => (
-        <Component {...props} />
+        <div>
+            <Header/>
+            <Component {...props} />
+        </div>
     );
 
     const renderRedirect = () => (

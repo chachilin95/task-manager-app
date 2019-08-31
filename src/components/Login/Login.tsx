@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 
-import { startLogin } from '../actions/auth';
+import { Props, DispatchProps } from './types';
+import { DispatchType } from '../../types/redux.types';
+import { startLogin } from '../../actions/auth';
 
-const Login: React.FC = () => {
+export const LoginView: React.FC<Props> = ({ login }) => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -12,12 +15,9 @@ const Login: React.FC = () => {
         e.preventDefault();
 
         try {
-            await startLogin({ email, password });
+            await login({ email, password });
         } catch (error) {
             setFailed(true);
-        } finally {
-            setEmail('');
-            setPassword('');
         }
     };
 
@@ -25,7 +25,7 @@ const Login: React.FC = () => {
         if (failed) {
             return <p>Login credentials were not accepted. Please try again</p>
         }
-    }
+    };
 
     return (
         <div>
@@ -50,4 +50,11 @@ const Login: React.FC = () => {
     );
 };
 
-export default Login;
+const mapDispatchToProps = (dispatch: DispatchType): DispatchProps => ({
+    login: async (user) => {
+        const action = await startLogin(user);
+        dispatch(action);
+    }
+});
+
+export default connect(undefined, mapDispatchToProps)(LoginView);
