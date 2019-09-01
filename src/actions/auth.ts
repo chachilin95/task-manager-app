@@ -1,5 +1,5 @@
 import { AuthenticationError } from '../utils/errors';
-import { Action, User } from '../types/auth.types';
+import { Action, CreateUser, LoginUser } from '../types/auth.types';
 import UserAPI from '../api/user';
 
 ///////////// LOGIN /////////////
@@ -9,7 +9,7 @@ export const login = (uid: string): Action => ({
     uid
 });
 
-export const startLogin = async (user: User) => {
+export const startLogin = async (user: LoginUser) => {
     try {
         const { token } = await UserAPI.login(user);
         return login(token);
@@ -35,7 +35,11 @@ export const startLogout = async () => {
 
 ///////////// CREATE ACCOUNT /////////////
 
-export const startCreateAccount = async () => {
-    // POST /users
-    // need email and password
+export const startCreateAccount = async (user: CreateUser) => {
+    try {
+        const { token } = await UserAPI.createAccount(user);
+        return login(token);
+    } catch (error) {
+        throw new AuthenticationError(error);
+    }
 };

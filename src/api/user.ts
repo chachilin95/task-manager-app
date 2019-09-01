@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { AuthenticationError } from '../utils/errors';
 
-import { User } from '../types/auth.types';
+import { CreateUser, LoginUser } from '../types/auth.types';
 import { UserResponse } from '../types/api.types';
 
 export const routes = {
@@ -13,7 +13,7 @@ export const routes = {
     CREATE_ACCOUNT: '/users'
 };
 
-const login = async (user: User) => {
+const login = async (user: LoginUser) => {
     try {
         const response = await axios.post<UserResponse>(routes.LOGIN, user);
         return response.data;
@@ -31,7 +31,18 @@ const logout = async () => {
     }
 };
 
+const createAccount = async (user: CreateUser) => {
+    try {
+        console.log('creating:', user);
+        const response = await axios.post<UserResponse>(routes.CREATE_ACCOUNT, user);
+        return response.data;
+    } catch (error) {
+        throw new AuthenticationError(error);
+    }
+};
+
 export default {
     login,
-    logout
+    logout,
+    createAccount
 };

@@ -4,6 +4,7 @@ import { createBrowserHistory as createHistory } from 'history';
 
 // components
 import Login from '../components/Login';
+import CreateAccount from '../components/CreateAccount';
 import TaskDashboard from '../components/TaskDashboard';
 import AddTask from '../components/AddTask';
 import EditTask from '../components/EditTask';
@@ -20,24 +21,28 @@ const AppRouter: React.FC = () => (
         <div>
             <Switch>
                 <PublicRoute
-                    exact 
-                    path='/' 
-                    component={Login}/>
-                <PrivateRoute 
-                    exact 
-                    path='/dashboard' 
-                    component={TaskDashboard}/>
-                <PrivateRoute 
-                    exact 
-                    path='/create' 
-                    component={AddTask}/>
-                <PrivateRoute 
-                    exact 
-                    path='/edit/:id' 
-                    component={EditTask}/>
-                <Route 
-                    exact 
-                    component={NotFound}/>
+                    exact
+                    path='/'
+                    component={Login} />
+                <PublicRoute
+                    exact
+                    path='/createAccount'
+                    component={CreateAccount} />
+                <PrivateRoute
+                    exact
+                    path='/dashboard'
+                    component={TaskDashboard} />
+                <PrivateRoute
+                    exact
+                    path='/create'
+                    component={AddTask} />
+                <PrivateRoute
+                    exact
+                    path='/edit/:id'
+                    component={EditTask} />
+                <Route
+                    exact
+                    component={NotFound} />
             </Switch>
         </div>
     </Router>

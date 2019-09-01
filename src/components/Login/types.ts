@@ -1,7 +1,7 @@
-import { User } from '../../types/auth.types';
+import { LoginUser } from '../../types/auth.types';
 
 export interface DispatchProps {
-    login: (user: User) => Promise<void>
+    login: (user: LoginUser) => Promise<void>
 };
 
 export type Props = DispatchProps;

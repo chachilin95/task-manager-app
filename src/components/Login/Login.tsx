@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { Props, DispatchProps } from './types';
@@ -23,7 +24,7 @@ export const LoginView: React.FC<Props> = ({ login }) => {
 
     const renderErrorMessage = () => {
         if (failed) {
-            return <p>Login credentials were not accepted. Please try again</p>
+            alert('Login credentials were not accepted. Please try again.');
         }
     };
 
@@ -46,6 +47,7 @@ export const LoginView: React.FC<Props> = ({ login }) => {
                 <button>Login</button>
             </form>
             {renderErrorMessage()}
+            <Link to='/createAccount'>Need an account?</Link>
         </div>
     );
 };
