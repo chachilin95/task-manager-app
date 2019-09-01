@@ -1,3 +1,5 @@
+import { Task } from "./tasks.types";
+
 export interface UserSchema {
     name: string,
     email: string,
@@ -9,7 +11,15 @@ export interface UserSchema {
     avatar: Buffer
 };
 
-export interface UserResponse {
+export type UserResponse = {
     user: UserSchema,
     token: string
 }
+
+export interface TaskSchema {
+    description: string,
+    completed: boolean,
+    owner: string
+}
+
+export type TaskResponse = Task[];

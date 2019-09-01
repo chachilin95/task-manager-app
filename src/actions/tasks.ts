@@ -1,4 +1,5 @@
 import { Action, Task } from '../types/tasks.types'
+import TaskAPI from '../api/tasks';
 
 ///////////// ADD TASK /////////////
 
@@ -31,7 +32,11 @@ export const setTasks = (tasks: Task[]): Action => ({
     tasks
 });
 
-export const startSetTasks = () => {
-    // GET /tasks
-    // requires authentication
+export const startSetTasks = async (token: string) => {
+    try {
+        const tasks = await TaskAPI.getAllTasks(token);
+        return setTasks(tasks);
+    } catch (error) {
+        throw new Error(error);
+    }
 };
