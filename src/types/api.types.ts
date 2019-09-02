@@ -1,5 +1,4 @@
-import { Task } from "./tasks.types";
-
+// user structure when returned from the db
 export interface UserSchema {
     name: string,
     email: string,
@@ -14,12 +13,17 @@ export interface UserSchema {
 export type UserResponse = {
     user: UserSchema,
     token: string
-}
+};
 
+// task structure when returned from the db
 export interface TaskSchema {
-    description: string,
     completed: boolean,
-    owner: string
-}
+    _id: string,
+    description: string,
+    owner: string,
+    createdAt: string,
+    updatedAt: string
+};
 
-export type TaskResponse = Task[];
+export type TasksResponse = TaskSchema[];
+export type SingleTaskResponse = TaskSchema;

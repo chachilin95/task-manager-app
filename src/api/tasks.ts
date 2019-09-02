@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { TaskResponse } from '../types/api.types';
+import { TasksResponse } from '../types/api.types';
 
 export const routes = {
     GET_ALL_TASKS: '/tasks',
@@ -10,7 +10,7 @@ export const routes = {
 }
 
 const getAllTasks = async (token: string) => {
-    const response = await axios.get<TaskResponse>(routes.GET_ALL_TASKS, {
+    const response = await axios.get<TasksResponse>(routes.GET_ALL_TASKS, {
         headers: {
             'Authorization': `Bearer ${token}`
         }
